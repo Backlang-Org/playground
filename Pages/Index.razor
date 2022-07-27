@@ -5,30 +5,35 @@
 
 <textarea class="border-2 min-w-[50%] min-h-screen" @bind="@Code" />
 
-<p role="status">Current Error Count: @errorCount</p>
-<p role="status">Error: @error</p>
+<p role="status">Current Error Count: @ErrorCount</p>
+<p role="status">Error: @Error</p>
 <p role="status">text: @Code</p>
 
-<button class="btn btn-primary rounded-md m-3" @onclick="Compile">Compile</button>
+<button class="btn btn-primary rounded-md m-3" @onclick="@Compile">Compile</button>
 
 @code {
+	[Parameter]
 	public string Code { get; set; }
 
-	private int errorCount = 0;
-	private string error = "";
+	[Parameter]
+	public int ErrorCount { get; set; } = 0;
 
-	private void Compile()
+	[Parameter]
+	public string Error { get; set; } = "Cool";
+
+	public void Compile()
 	{
 		var p = Parser.Parse(new SourceDocument("playground.back", Code));
 
-		errorCount = p.Messages.Count;
+		ErrorCount = p.Messages.Count;
 
-		if (errorCount > 0)
+		if (ErrorCount > 0)
 		{
-			error = string.Join("\n", p.Messages.Select(_=> _.ToString()));
+			Error = string.Join("\n", p.Messages.Select(_=> _.ToString()));
 		}
-		else {
-			error = "";
+		else
+		{
+			Error = "";
 		}
 	}
 }

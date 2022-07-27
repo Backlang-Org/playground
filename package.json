@@ -4,7 +4,7 @@
   "description": "[![Azure Status](https://dev.azure.com/fernandreu-public/BlazorPages/_apis/build/status/fernandreu.blazor-pages?branchName=master)](https://dev.azure.com/fernandreu-public/BlazorPages/_build/latest?definitionId=6?branchName=master)\r [![Actions Status](https://github.com/fernandreu/blazor-pages/workflows/gh-pages/badge.svg)](https://github.com/fernandreu/blazor-pages/actions)",
   "main": "index.js",
   "scripts": {
-	"buildcss": "postcss wwwroot/css/app.css -o wwwroot/css/app.min.css",
+	  "buildcss": "postcss wwwroot/css/app.css -o wwwroot/css/app.min.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
