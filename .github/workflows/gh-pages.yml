@@ -8,7 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    
+    - uses: actions/checkout@v3
+    
+    - name: Cache
+      id: cache-backlang-playground
+      uses: actions/cache@v3
+      with:
+        path: backlang-playground
+        key: ${{ runner.os }}-blplayground
+
     - name: Setup .NET 
       uses: actions/setup-dotnet@v2
       with:
@@ -16,9 +25,11 @@ jobs:
         include-prerelease: true
       
     - name: Init NPM
+      if: steps.backlang-playground.outputs.cache-hit != 'true'
       run: npm install tailwindcss postcss autoprefixer postcss-cli
       
     - name: install wasm tools
+      if: steps.backlang-playground.outputs.cache-hit != 'true'
       run: dotnet workload install wasm-tools
     
     - name: Publish with dotnet
