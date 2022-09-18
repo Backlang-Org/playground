@@ -1,0 +1,4 @@
+{
+  "name": "Discriminated Unions",
+  "body": "public type Expr = | Literal(Value: obj) \n | Unary(Inner: Expr);\n\npublic static func main() {\n\tprint(\"hello world\");\n}"
+}

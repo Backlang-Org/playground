@@ -1,0 +1,4 @@
+{
+  "name": "Hello World",
+  "body": "public static func main() {\n\tprint(\"hello world\");\n}"
+}

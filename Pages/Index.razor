@@ -1,7 +1,16 @@
 ﻿@page "/"
 @using Backlang.Codeanalysis.Parsing
 
+@inject SampleLoader sampleLoader
+
 <PageTitle>Playground</PageTitle>
+
+<select name="sample" id="sample" @bind="@SelectedSample">
+  <option value="hello_world">Hello World</option>
+  <option value="units">Units</option>
+  <option value="structs">Structs</option>
+  <option value="du">Discriminated Unions</option>
+</select>
 
 <textarea class="border-2 min-w-[50%] min-h-screen" @bind="@Code" />
 
@@ -21,6 +30,20 @@
 	[Parameter]
 	public string Error { get; set; } = "blub";
 
+	private string _selectedSample;
+
+	[Parameter]
+	public string SelectedSample
+	{
+		get { return _selectedSample; }
+		set { _selectedSample = value; OnSampleSelect(value); }
+	}
+
+
+	public async Task OnSampleSelect(string selectedSample) {
+		Code = await sampleLoader.GetSampleAsync(selectedSample);
+	}
+
 	public void Compile()
 	{
 		var p = Parser.Parse(new SourceDocument("playground.back", Code));
@@ -35,5 +58,11 @@
 		{
 			Error = "";
 		}
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		SelectedSample = "hello_world";
+		await OnSampleSelect(SelectedSample);
 	}
 }
