@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>playground</title>
+    <base href="/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="playground.styles.css" rel="stylesheet">
+    <link href="css/app.min.css" rel="stylesheet" />
+    <link href="css/wavy.css" rel="stylesheet" />
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="_content/BlazorMonaco/lib/monaco-editor/min/vs/editor/editor.main.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="flex items-center justify-center w-screen h-screen">
+            <div class="text-center pt-3" style="color: purple; font-size: 16pt">
+                <div class="waviy">
+                    <span style="--i:1">L</span>
+                    <span style="--i:2">o</span>
+                    <span style="--i:3">a</span>
+                    <span style="--i:4">d</span>
+                    <span style="--i:5">i</span>
+                    <span style="--i:6">n</span>
+                    <span style="--i:7">g</span>
+                    <span style="--i:8">.</span>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                      style="font-size: 16pt; width: 36px; height: 36px; color: #57B1FF" />
+            </div>
+
+            <img src="/images/logo.svg" style="width:30%" />
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/loader.js"></script>
+    <script>require.config({ paths: { 'vs': '_content/BlazorMonaco/lib/monaco-editor/min/vs' } });</script>
+    <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+    <script src="_content/BlazorMonaco/jsInterop.js"></script>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+</html>

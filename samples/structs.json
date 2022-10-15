@@ -1,0 +1,4 @@
+{
+  "name": "Structs",
+  "body": "public struct Dog {\n\tlet Race : string;\n}\npublic static func main() {\n\tlet myDog = Dog::new(\"Yorksire\");\n\tprint(\"Race of the dog: \" + myDog.Race);\n}"
+}
