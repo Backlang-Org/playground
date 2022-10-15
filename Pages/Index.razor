@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Backlang.Codeanalysis.Parsing
+@using BlazorMonaco
 
 @inject SampleLoader sampleLoader
 
@@ -13,6 +14,31 @@
 </select>
 
 <textarea class="border-2 min-w-[50%] min-h-screen" @bind="@Code" />
+<MonacoEditor @ref="_editor" Id="sample-code-editor-123" ConstructionOptions="EditorConstructionOptions" />
+
+@code {
+	private MonacoEditor _editor { get; set; }
+	private string ValueToSet { get; set; }
+
+	private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor editor)
+	{
+		return new StandaloneEditorConstructionOptions
+			{
+				Language = "javascript",
+				GlyphMargin = true,
+				Value = "\"use strict\";\n" +
+						"function Person(age) {\n" +
+						"	if (age) {\n" +
+						"		this.age = age;\n" +
+						"	}\n" +
+						"}\n" +
+						"Person.prototype.getAge = function () {\n" +
+						"	return this.age;\n" +
+						"};\n"
+			};
+	}
+}
+
 
 <p role="status">Current Error Count: @ErrorCount</p>
 <p role="status">Error: @Error</p>
@@ -21,6 +47,16 @@
 <button class="btn btn-primary rounded-md m-3" @onclick="@Compile">Compile</button>
 
 @code {
+	
+
+	[Parameter]
+	public string Filename { get; set; }
+
+	private string CsCode { get; set; } = "";
+
+	private MonacoEditor MonacoEditor { get; set; }
+
+
 	[Parameter]
 	public string Code { get; set; }
 
